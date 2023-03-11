@@ -33,31 +33,30 @@ let data = {title: "", task: ""}
 
 let acceptData = () => {
     dataa.push({title: title.value, task: task.value});
-    // data.title = title.value;
-    // data.task = task.value;
-    createTask(dataa);
+    createTask();
 }
 
 // create task
-let createTask = (dataa) => {
-    if(dataa.length > 0){
+let createTask = () => {
+    // if(dataa.length > 0){
         addedTasks.innerHTML = "";
-        dataa.map((data) => {
-            addedTasks.innerHTML += `
-                <div class="d-flex">
+        dataa.map((data, index) => {
+            return(
+                addedTasks.innerHTML += `
+                <div id=${index} class="d-flex">
                     <h3 class="title">${data.title}</h3>
                     <p class="task">${data.task}</p>
                     <div class="button_wrapper">
-                        <button class="primary" id="edit-btn" onClick="editPost(this)">EDIT</button>
-                        <button class="secondary" id="delete-btn" onclick="delete">DELETE</button>
+                        <button class="primary" id="edit-btn" onClick="edit(this)">EDIT</button>
+                        <button class="secondary" id="delete-btn" onclick="deleteTask(this)">DELETE</button>
                     </div>
                 </div>
-            `;
+            `
+            );
         });
-    }else{
-        addedTasks.innerHTML += `<p>No Tasks Found</p>`;
-    }
-    console.log(dataa)
+    // }else{
+    //     addedTasks.innerHTML += `<p>No Tasks Found</p>`;
+    // }
     title.value = "";
     task.value = "";
     setTimeout(() => {
@@ -65,27 +64,36 @@ let createTask = (dataa) => {
     }, 1000);
 }
 
-let editPost = (e) => {
+// edit task
+const edit = (e) => {
     let selectedTask = e.parentElement.parentElement;
-    let titleEl = document.getElementsByClassName('title');
-    let button_wrapper = addedTasks.getElementsByClassName('button_wrapper')[0];
-
-    title.value = selectedTask.children[0].innerHTML;
-    task.value = selectedTask.children[1].innerHTML;
-    titleEl[0].setAttribute("contentEditable", "true");
-    if(!saveBtn){
-        button_wrapper.innerHTML += `<button class="secondary" id="save-btn" onClick="edit()">SAVE</button>`;
-    }
-
-    // edit(dataa);
+    title.value = selectedTask.children[0].innerText;
+    task.value = selectedTask.children[1].innerText;
+    e.innerText = "Update";
+    e.setAttribute("onClick", "update(this)");
 }
 
-// createTask(dataa);
-
-const edit = () => {
-    dataa.push({title: title.value, task: task.value});
-    console.log(dataa)
-    // e.map((e) => {
-        // console.log(dataa);
-    // });
+// update tasks
+const update = (e) => {
+    dataa.forEach((data) => {
+        data[{title: title.value, task: task.value}]
+        console.log(data)
+        let selectedTask = e.parentElement.parentElement;
+        selectedTask.children[0].innerHTML = data.title;
+        selectedTask.children[1].innerHTML = data.task;
+        title.value = ""
+        task.value = ""
+        e.innerText = "Edit";
+        e.setAttribute("onClick", "edit(this)");
+    });
 }
+
+let deleteTask = (e) => {
+    e.parentElement.parentElement.remove();
+  
+    dataa.splice(e.parentElement.parentElement.id, 1);
+  
+    // localStorage.setItem("data", JSON.stringify(data));
+  
+    console.log(dataa);
+};
