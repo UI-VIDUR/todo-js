@@ -77,7 +77,7 @@ const edit = (e) => {
 const update = (e) => {
     dataa.forEach((data) => {
         data[{title: title.value, task: task.value}]
-        console.log(data)
+        // console.log(data)
         let selectedTask = e.parentElement.parentElement;
         selectedTask.children[0].innerHTML = data.title;
         selectedTask.children[1].innerHTML = data.task;
@@ -86,6 +86,7 @@ const update = (e) => {
         e.innerText = "Edit";
         e.setAttribute("onClick", "edit(this)");
     });
+
 }
 
 let deleteTask = (e) => {
