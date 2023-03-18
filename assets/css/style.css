@@ -119,7 +119,11 @@ header{
     margin-bottom: 25px;
 }
 
-.error_msg{
+.error{
+    border-color: var(--red);
+}
+
+.success_msg{
     position: absolute;
     bottom: 10px;
     font-size: 10px;

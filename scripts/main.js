@@ -3,28 +3,41 @@ let title = document.querySelector('#title');
 let desc = document.querySelector('#task');
 let add = document.querySelector('#submit-task');
 let tasks = document.querySelector('#added-tasks');
-let error = document.querySelector('#error');
+let success = document.querySelector('#success');
 let tasksNumber = document.querySelector('.tasks_number b');
 let loader = document.querySelector('.loader');
 
 let data = [];
+
+title.focus();
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     formValidation();
 });
 
+const onChangeValidation = () => {
+    if(!title.value == ""){
+        title.classList.remove('error');
+    }
+    if(!desc.value == ""){
+        desc.classList.remove('error');
+    }
+}
+
 const formValidation = () => {
     if(title.value == ""){
-        error.innerText = "Title cannot be empty";
-        error.style.color = "red";
+        title.classList.add('error');
+        title.focus();
     }
     else if(desc.value == ""){
-        error.innerText = "Description cannot be empty";
-        error.style.color = "red";
+        desc.classList.add('error');
+        desc.focus();
     }else{
-        error.innerText = "Successfully added the tasks";
-        error.style.color = "green";
+        title.classList.remove('error');
+        desc.classList.remove('error');
+        success.innerText = "Successfully added the tasks";
+        success.style.color = "green";
         addTask();
     }
 }
@@ -67,8 +80,9 @@ const appendHtml = () => {
     }
     title.value = "";
     desc.value = "";
+    title.focus();
     setTimeout(() => {
-        error.innerHTML = "";
+        success.innerHTML = "";
     }, 1000);
 }
 
@@ -94,6 +108,7 @@ const update = (e, index) => {
             selectedEl.children[1].innerText = update.description;
             title.value = "";
             desc.value = "";
+            title.focus();
             e.innerText = "edit";
             e.setAttribute("onClick", `edit(this, ${index})`);
         });
