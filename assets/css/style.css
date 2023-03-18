@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: poppins;
     font-size: 1rem;
 }
 
@@ -26,7 +26,7 @@
     font-family: poppins;
     src: url('../fonts/Poppins/Poppins-Medium.ttf');
     font-display: swap; 
-    font-weight: 600;
+    font-weight: 500;
 }
 
 @font-face {
@@ -75,6 +75,7 @@ header{
     font-weight: 700;
     font-family: amarnath;
     font-size: 26px;
+    text-transform: uppercase;
 }
 
 .tasks_number{
@@ -151,6 +152,9 @@ input{
     border: 1px solid var(--primary);
     border-radius: 3px;
     outline: none;
+    font-family: poppins;
+    font-size: 14px;
+    color: var(--primary);
 }
 
 textarea{
@@ -158,6 +162,8 @@ textarea{
     border-radius: 3px;
     padding: 15px;
     outline: none;
+    font-size: 14px;
+    color: var(--primary);
 }
 
 input::placeholder,
@@ -246,4 +252,48 @@ button:focus{
 
 .tasks_added .main_title{
     display: block;
+}
+
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 767px) {
+    body{
+        height: auto;
+    }
+    header{
+        margin-bottom: 30px;
+    }
+    form{
+        max-width: 100%;
+    }
+    .cstm_navbrand{
+        text-align: center;
+        white-space: inherit;
+        margin: 0;
+    }
+    .main_title{
+        font-size: 30px;
+    }
+    .tasks_number{
+        width: 100%;
+        justify-content: center;
+    }
+    .wrapper{
+        flex-direction: column;
+        gap: 30px;
+    }
+    .col_left{
+        width: 100%;
+    }
+    .col_right{
+        width: 100%;
+    }
+    .tasks_wrapper{
+        max-height: inherit;
+        padding: 0;
+    }
+    .task_card{
+        width: 100%;
+    }
 }
