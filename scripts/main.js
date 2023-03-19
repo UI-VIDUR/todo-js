@@ -92,6 +92,7 @@ const edit = (e, index) => {
     desc.value = selectedEl.children[1].innerText
     e.innerText = "update";
     e.setAttribute("onClick", `update(this, ${index})`);
+    add.setAttribute("disabled", true);
     console.log(data);
 }
 
@@ -114,6 +115,7 @@ const update = (e, index) => {
         });
     
         appendHtml();
+        add.removeAttribute("disabled");
         loader.style.display = 'none';
     }, 300);
 }
