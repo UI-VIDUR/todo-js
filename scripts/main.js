@@ -36,7 +36,7 @@ const formValidation = () => {
     }else{
         title.classList.remove('error');
         desc.classList.remove('error');
-        success.innerText = "Successfully added the tasks";
+        success.innerText = "Task Successfully added";
         success.style.color = "green";
         addTask();
     }
